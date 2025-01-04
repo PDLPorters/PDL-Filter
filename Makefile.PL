@@ -8,7 +8,7 @@ my $package_name = "PDL::Filter";
 $repo = "PDLPorters/$repo";
 WriteMakefile(
   NAME => $package_name,
-  VERSION_FROM => 'Linear.pm',
+  VERSION_FROM => 'Filter.pm',
   AUTHOR => 'PerlDL Developers <pdl-general@lists.sourceforge.net>',
   CONFIGURE_REQUIRES => {
     'ExtUtils::MakeMaker' => 0,
@@ -17,7 +17,10 @@ WriteMakefile(
   PREREQ_PM => {
     'PDL' => '2.096',
   },
-  PM => { map +($_ => '$(INST_LIBDIR)/Filter/'.$_), <*.pm> },
+  PM => {
+    'Filter.pm' => '$(INST_LIBDIR)/Filter.pm',
+    map +($_ => '$(INST_LIBDIR)/Filter/'.$_), <Lin*.pm>,
+  },
   META_MERGE => {
     "meta-spec" => { version => 2 },
     resources => {
